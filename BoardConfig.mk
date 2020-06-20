@@ -24,14 +24,14 @@ BOARD_MALLOC_ALIGNMENT := 16
 COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
 # Kernel information
-#TARGET_NO_KERNEL := true
+TARGET_NO_KERNEL := true
 #TARGET_NO_BOOTIMAGE := true
 TARGET_NO_RECOVERY := true
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
-#TARGET_KERNEL_CONFIG := android_santos10_open_r00_user_defconfig
-#TARGET_KERNEL_SOURCE := kernel/samsung/santos10wifi/
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel_bins/bzImage
+TARGET_KERNEL_CONFIG := lineage_santos10_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/santos10wifi/
+#TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel_bins/bzImage
 DEVICE_BASE_BOOT_IMAGE := $(LOCAL_PATH)/boot.img
 DEVICE_BASE_RECOVERY_IMAGE := $(LOCAL_PATH)/recovery.img
 #PDK_PLATFORM_ZIP_PRODUCT_BINARIES := $(LOCAL_PATH)/kernel_bins/vmlinux.bin.gz
