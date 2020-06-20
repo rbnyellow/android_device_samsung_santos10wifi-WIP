@@ -14,6 +14,5 @@
 # limitations under the License.
 #
 
-
 PRODUCT_MAKEFILES := \
-$(LOCAL_DIR)/full_0santos10wifi.mk
+	$(LOCAL_DIR)/lineage_santos10wifi.mk
