@@ -32,8 +32,8 @@ TARGET_NO_RADIOIMAGE := true
 TARGET_KERNEL_CONFIG := lineage_santos10_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/santos10wifi/
 #TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel_bins/bzImage
-DEVICE_BASE_BOOT_IMAGE := $(LOCAL_PATH)/boot.img
-DEVICE_BASE_RECOVERY_IMAGE := $(LOCAL_PATH)/recovery.img
+#DEVICE_BASE_BOOT_IMAGE := $(LOCAL_PATH)/boot.img
+#DEVICE_BASE_RECOVERY_IMAGE := $(LOCAL_PATH)/recovery.img
 #PDK_PLATFORM_ZIP_PRODUCT_BINARIES := $(LOCAL_PATH)/kernel_bins/vmlinux.bin.gz
 
 #BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=ttyS0 console=logk0 earlyprintk=nologger loglevel=8 hsu_dma=7 kmemleak=off androidboot.bootmedia=sdcard androidboot.hardware=santos10wifi androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789012345678901 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on vmalloc=256M
