@@ -1,16 +1,29 @@
+#
+# Copyright (C) 2017 The LineageOS Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 # Inherit dalvik configuration and the rest of the platform
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
+
 # Build Packages
 $(call inherit-product, build/target/product/full_base.mk)
+
 # Get Arm translator
 #$(call inherit-product-if-exists, vendor/intel/Android.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/samsung/santos10wifi/overlay
-
-file := $(INSTALLED_KERNEL_TARGET)
-ALL_PREBUILT += $(file)
-$(file): $(TARGET_PREBUILT_KERNEL) | $(ACP)
-    $(transform-prebuilt-to-target)
 
 ## During Development we will turn off all security etc.
 ADDITIONAL_DEFAULT_PROPERTIES := \
@@ -24,7 +37,7 @@ ADDITIONAL_DEFAULT_PROPERTIES := \
 ADDITIONAL_DEFAULT_PROPERTIES += \
         ro.adb.secure=0 \
         ro.secure=0 \
-        ro.debugabble=1 
+        ro.debugabble=1 \
         ro.sf.lcd_density=160 \
         panel.physicalWidthmm=217 \
         panel.physicalHeightmm=136 \
@@ -159,11 +172,6 @@ PRODUCT_PACKAGES += \
 
 LOCAL_PATH := device/samsung/santos10wifi
 
-
-#KERNEL_BLB
-PRODUCT_COPY_FILES += \
- $(LOCAL_PATH)/kernel_bins/bzImage:kernel
-
 #PowerVR BINARY
 PRODUCT_COPY_FILES += \
 $(LOCAL_PATH)/vendor/bin/pvrsrvctl:system/vendor/bin/pvrsrvctl
@@ -176,7 +184,6 @@ $(LOCAL_PATH)/ramdisk/busybox:root/system/bin/busybox \
 #$(LOCAL_PATH)/ramdisk/dmesg:root/system/bin/dmesg \
 #$(LOCAL_PATH)/ramdisk/logcat:root/system/bin/logcat \
 #$(LOCAL_PATH)/ramdisk/adbd:root/system/bin/adbd \
-
 
 #binary
 IA_BIN := $(wildcard $(LOCAL_PATH)/bin/**)
@@ -381,5 +388,3 @@ $(foreach i, $(IA_WIFI), $(i):system/etc/wifi/$(notdir $(i)))
 IA_BT := $(wildcard $(LOCAL_PATH)/bluetooth/*.*)
 PRODUCT_COPY_FILES += \
 $(foreach i, $(IA_BT), $(i):system/etc/bluetooth/$(notdir $(i)))
-
-
