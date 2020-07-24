@@ -1,3 +1,19 @@
+#
+# Copyright 2013 The Android Open-Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 include $(GENERIC_X86_CONFIG_MK)
 LOCAL_PATH := device/samsung/santos10wifi
 
@@ -24,16 +40,17 @@ BOARD_MALLOC_ALIGNMENT := 16
 COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
 # Kernel information
-TARGET_NO_KERNEL := true
+#TARGET_NO_KERNEL := true
 #TARGET_NO_BOOTIMAGE := true
-TARGET_NO_RECOVERY := true
-TARGET_NO_BOOTLOADER := true
+#TARGET_NO_RECOVERY := true
+#TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
-TARGET_KERNEL_CONFIG := lineage_santos10_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/santos10wifi/
-#TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel_bins/bzImage
-#DEVICE_BASE_BOOT_IMAGE := $(LOCAL_PATH)/boot.img
-#DEVICE_BASE_RECOVERY_IMAGE := $(LOCAL_PATH)/recovery.img
+#TARGET_KERNEL_CONFIG := android_santos10_open_r00_user_defconfig
+#TARGET_KERNEL_SOURCE := kernel/samsung/santos10wifi/
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/kernel/bzImage
+DEVICE_BASE_BOOT_IMAGE := $(LOCAL_PATH)/prebuilt/bootimg/boot.img
+DEVICE_BASE_RECOVERY_IMAGE := $(LOCAL_PATH)/prebuilt/recoveryimg/recovery.img
+BOARD_KERNEL_IMAGE_NAME := bzImage
 #PDK_PLATFORM_ZIP_PRODUCT_BINARIES := $(LOCAL_PATH)/kernel_bins/vmlinux.bin.gz
 
 #BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=ttyS0 console=logk0 earlyprintk=nologger loglevel=8 hsu_dma=7 kmemleak=off androidboot.bootmedia=sdcard androidboot.hardware=santos10wifi androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789012345678901 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on vmalloc=256M
@@ -161,7 +178,7 @@ DEVICE_RESOLUTION := 1280x800
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/etc/recovery.fstab
 BOARD_HAS_NO_SELECT_BUTTON := true
 #TARGET_RECOVERY_UI_LIB := librecovery_ui_santos10wifi
-#TARGET_PREBUILT_RECOVERY_KERNEL := $(LOCAL_PATH)/kernel_bins/bzImage
+TARGET_PREBUILT_RECOVERY_KERNEL := $(LOCAL_PATH)/prebuilt/kernel/bzImage
 #TARGET_RECOVERY_INITRC := $(LOCAL_PATH)/recovery/recovery.init.rc
 RECOVERY_SDCARD_ON_DATA := true
 
