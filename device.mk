@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017 The LineageOS Project
+# Copyright 2013 The Android Open-Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,10 +23,20 @@ $(call inherit-product, build/target/product/full_base.mk)
 # Get Arm translator
 #$(call inherit-product-if-exists, vendor/intel/Android.mk)
 
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
+# The gps config appropriate for this device
+#$(call inherit-product, device/common/gps/gps_us_supl.mk)
+
 DEVICE_PACKAGE_OVERLAYS += device/samsung/santos10wifi/overlay
 
+file := $(INSTALLED_KERNEL_TARGET)
+ALL_PREBUILT += $(file)
+$(file): $(TARGET_PREBUILT_KERNEL) | $(ACP)
+    $(transform-prebuilt-to-target)
+
 ## During Development we will turn off all security etc.
-ADDITIONAL_DEFAULT_PROPERTIES := \
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
     ro.adb.secure=0 \
     ro.secure=0 \
     ro.debugabble=1 
@@ -34,7 +44,7 @@ ADDITIONAL_DEFAULT_PROPERTIES := \
 
 # Additional default properties to be
 # appended to /default.prop
-ADDITIONAL_DEFAULT_PROPERTIES += \
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
         ro.adb.secure=0 \
         ro.secure=0 \
         ro.debugabble=1 \
@@ -172,6 +182,11 @@ PRODUCT_PACKAGES += \
 
 LOCAL_PATH := device/samsung/santos10wifi
 
+
+#KERNEL_BLB
+PRODUCT_COPY_FILES += \
+ $(LOCAL_PATH)/prebuilt/kernel/bzImage:kernel
+
 #PowerVR BINARY
 PRODUCT_COPY_FILES += \
 $(LOCAL_PATH)/vendor/bin/pvrsrvctl:system/vendor/bin/pvrsrvctl
@@ -184,6 +199,7 @@ $(LOCAL_PATH)/ramdisk/busybox:root/system/bin/busybox \
 #$(LOCAL_PATH)/ramdisk/dmesg:root/system/bin/dmesg \
 #$(LOCAL_PATH)/ramdisk/logcat:root/system/bin/logcat \
 #$(LOCAL_PATH)/ramdisk/adbd:root/system/bin/adbd \
+
 
 #binary
 IA_BIN := $(wildcard $(LOCAL_PATH)/bin/**)
@@ -388,3 +404,5 @@ $(foreach i, $(IA_WIFI), $(i):system/etc/wifi/$(notdir $(i)))
 IA_BT := $(wildcard $(LOCAL_PATH)/bluetooth/*.*)
 PRODUCT_COPY_FILES += \
 $(foreach i, $(IA_BT), $(i):system/etc/bluetooth/$(notdir $(i)))
+
+
