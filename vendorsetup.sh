@@ -14,4 +14,6 @@
 # limitations under the License.
 #
 
-add_lunch_combo cm_santos10wifi-userdebug
+add_lunch_combo lineage_santos10wifi-eng
+add_lunch_combo lineage_santos10wifi-user
+add_lunch_combo lineage_santos10wifi-userdebug
